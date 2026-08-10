@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Connexion — Starson ViewBoost ⭐</title>
+  <meta name="description" content="Connectez-vous à votre espace Starson ViewBoost.">
 
   <style>
     * {
@@ -12,14 +14,32 @@
       padding: 0;
     }
 
+    :root {
+      --bg: #080d1c;
+      --card: #121a2e;
+      --primary: #7c3aed;
+      --blue: #2563eb;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(255,255,255,.1);
+    }
+
     body {
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(124,58,237,.25), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(37,99,235,.2), transparent 35%),
-        #080d1c;
-      color: white;
+        radial-gradient(
+          circle at top left,
+          rgba(124,58,237,.25),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(37,99,235,.20),
+          transparent 35%
+        ),
+        var(--bg);
+      color: var(--text);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -43,8 +63,8 @@
     }
 
     .card {
-      background: rgba(18,26,46,.9);
-      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(18,26,46,.92);
+      border: 1px solid var(--border);
       border-radius: 24px;
       padding: 35px 28px;
       box-shadow: 0 25px 70px rgba(0,0,0,.4);
@@ -58,7 +78,7 @@
 
     .subtitle {
       text-align: center;
-      color: #94a3b8;
+      color: var(--muted);
       margin-bottom: 30px;
       font-size: 14px;
     }
@@ -75,7 +95,7 @@
       padding: 14px 15px;
       margin-bottom: 18px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.1);
+      border: 1px solid var(--border);
       background: rgba(255,255,255,.05);
       color: white;
       outline: none;
@@ -99,14 +119,19 @@
       margin-top: -8px;
       margin-bottom: 22px;
       cursor: pointer;
+      text-decoration: none;
     }
 
-    button {
+    .login-btn {
       width: 100%;
       padding: 14px;
       border: 0;
       border-radius: 12px;
-      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--blue)
+      );
       color: white;
       font-weight: 800;
       font-size: 15px;
@@ -114,9 +139,9 @@
       transition: .25s;
     }
 
-    button:hover {
+    .login-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(124,58,237,.25);
+      box-shadow: 0 12px 30px rgba(124,58,237,.3);
     }
 
     .divider {
@@ -132,13 +157,13 @@
     .divider::after {
       content: "";
       height: 1px;
-      background: rgba(255,255,255,.1);
+      background: var(--border);
       flex: 1;
     }
 
     .signup {
       text-align: center;
-      color: #94a3b8;
+      color: var(--muted);
       font-size: 14px;
     }
 
@@ -152,7 +177,7 @@
       display: block;
       text-align: center;
       margin-top: 22px;
-      color: #94a3b8;
+      color: var(--muted);
       font-size: 13px;
       text-decoration: none;
     }
@@ -162,11 +187,20 @@
       margin-bottom: 18px;
       padding: 12px;
       border-radius: 10px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .message.error {
       background: rgba(239,68,68,.12);
       border: 1px solid rgba(239,68,68,.25);
       color: #fca5a5;
-      font-size: 13px;
-      text-align: center;
+    }
+
+    .message.success {
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.25);
+      color: #86efac;
     }
 
     @media (max-width: 480px) {
@@ -185,9 +219,13 @@
 
   <div class="container">
 
+    <!-- LOGO -->
+
     <div class="logo">
       <span>⭐</span> Starson ViewBoost
     </div>
+
+    <!-- LOGIN CARD -->
 
     <div class="card">
 
@@ -197,46 +235,82 @@
         Connectez-vous à votre espace Starson ViewBoost.
       </p>
 
-      <div class="message" id="message"></div>
+      <div
+        class="message"
+        id="message"
+      ></div>
 
       <form id="loginForm">
 
-        <label for="email">Adresse e-mail</label>
+        <!-- EMAIL -->
+
+        <label for="email">
+          Adresse e-mail
+        </label>
 
         <input
           type="email"
           id="email"
           placeholder="vous@exemple.com"
+          autocomplete="email"
           required
         >
 
-        <label for="password">Mot de passe</label>
+        <!-- PASSWORD -->
+
+        <label for="password">
+          Mot de passe
+        </label>
 
         <input
           type="password"
           id="password"
           placeholder="Votre mot de passe"
+          autocomplete="current-password"
           required
         >
 
-        <a class="forgot" href="#" onclick="forgotPassword(event)">
+        <!-- FORGOT PASSWORD -->
+
+        <a
+          class="forgot"
+          href="#"
+          onclick="forgotPassword(event)"
+        >
           Mot de passe oublié ?
         </a>
 
-        <button type="submit">
+        <!-- LOGIN -->
+
+        <button
+          class="login-btn"
+          type="submit"
+          id="loginButton"
+        >
           Se connecter →
         </button>
 
       </form>
 
-      <div class="divider">OU</div>
+      <div class="divider">
+        OU
+      </div>
+
+      <!-- SIGNUP -->
 
       <div class="signup">
         Vous n'avez pas encore de compte ?
-        <a href="signup.html">Créer un compte</a>
+        <a href="signup.html">
+          Créer un compte
+        </a>
       </div>
 
-      <a class="back" href="index.html">
+      <!-- BACK -->
+
+      <a
+        class="back"
+        href="index.html"
+      >
         ← Retour à l'accueil
       </a>
 
@@ -245,41 +319,172 @@
   </div>
 
   <script>
+
     const form = document.getElementById("loginForm");
-    const message = document.getElementById("message");
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
+    const message =
+      document.getElementById("message");
 
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+    const loginButton =
+      document.getElementById("loginButton");
 
-      if (!email || !password) {
-        showMessage("Veuillez remplir tous les champs.");
-        return;
+
+    /*
+      LOGIN DEMO
+
+      IMPORTANT:
+      Cette version utilise localStorage
+      uniquement pour la première version
+      du site.
+
+      Plus tard, nous connecterons une vraie
+      base de données et une authentification
+      sécurisée.
+    */
+
+
+    form.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById("password")
+            .value;
+
+
+        // Vérification des champs
+
+        if (!email || !password) {
+
+          showMessage(
+            "Veuillez remplir tous les champs.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        // Vérification simple du mot de passe
+
+        if (password.length < 6) {
+
+          showMessage(
+            "Le mot de passe doit contenir au moins 6 caractères.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        // Animation du bouton
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+          "Connexion en cours...";
+
+
+        /*
+          Sauvegarde de session DEMO
+        */
+
+        localStorage.setItem(
+          "starson_logged_in",
+          "true"
+        );
+
+        localStorage.setItem(
+          "starson_user_email",
+          email
+        );
+
+
+        /*
+          Petite attente pour rendre
+          l'expérience plus naturelle.
+        */
+
+        setTimeout(
+          function() {
+
+            window.location.href =
+              "dashboard.html";
+
+          },
+          700
+        );
+
       }
+    );
 
-      /*
-       * Authentification réelle à connecter dans une prochaine étape.
-       * Pour l'instant, on prépare l'interface.
-       */
-      showMessage(
-        "Le système de connexion sera activé dans la prochaine étape."
-      );
-    });
 
-    function showMessage(text) {
+    /*
+      AFFICHER UN MESSAGE
+    */
+
+    function showMessage(
+      text,
+      type
+    ) {
+
       message.textContent = text;
-      message.style.display = "block";
+
+      message.className =
+        "message " + type;
+
+      message.style.display =
+        "block";
+
     }
+
+
+    /*
+      MOT DE PASSE OUBLIÉ
+    */
 
     function forgotPassword(event) {
+
       event.preventDefault();
+
       showMessage(
-        "La récupération du mot de passe sera disponible prochainement."
+        "La récupération du mot de passe sera disponible prochainement.",
+        "success"
       );
+
     }
+
+
+    /*
+      Si l'utilisateur est déjà
+      connecté, on peut directement
+      ouvrir le dashboard.
+    */
+
+    const alreadyLoggedIn =
+      localStorage.getItem(
+        "starson_logged_in"
+      );
+
+    if (alreadyLoggedIn === "true") {
+
+      // Pas de redirection automatique
+      // pour éviter de bloquer l'utilisateur
+      // sur la page de connexion.
+
+    }
+
   </script>
 
 </body>
-</html>
+  </html>
