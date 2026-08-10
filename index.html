@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Starson ViewBoost ⭐</title>
+  <meta name="description" content="Starson ViewBoost - Analysez, suivez et développez votre visibilité en ligne.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #7c3aed;
+      --primary-dark: #5b21b6;
+      --secondary: #2563eb;
+      --dark: #0b1020;
+      --dark-card: #121a2e;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(255,255,255,.09);
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(11,16,32,.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      height: 72px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 20px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .logo-star {
+      font-size: 27px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: white;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 10px 30px rgba(124,58,237,.25);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: white;
+      font-size: 28px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 24px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: rgba(124,58,237,.18);
+      filter: blur(120px);
+      border-radius: 50%;
+      top: 0;
+      left: -250px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(37,99,235,.14);
+      filter: blur(120px);
+      border-radius: 50%;
+      right: -200px;
+      bottom: 0;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(124,58,237,.13);
+      border: 1px solid rgba(124,58,237,.3);
+      color: #c4b5fd;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 590px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    /* DASHBOARD PREVIEW */
+
+    .dashboard-preview {
+      background: rgba(18,26,46,.82);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+      transform: perspective(1000px) rotateY(-5deg);
+    }
+
+    .preview-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .preview-title {
+      font-weight: 800;
+    }
+
+    .live {
+      color: #4ade80;
+      font-size: 12px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .stat-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .stat-card strong {
+      font-size: 25px;
+    }
+
+    .growth {
+      color: #4ade80;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .chart {
+      height: 170px;
+      margin-top: 15px;
+      border-radius: 15px;
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 35px 35px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 25px;
+      height: 90px;
+      border-top: 4px solid #8b5cf6;
+      transform: skewY(-8deg) rotate(-2deg);
+      box-shadow: 0 -5px 25px rgba(139,92,246,.35);
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 100px 24px;
+    }
+
+    .section-container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 55px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(32px,5vw,48px);
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* FEATURES */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      padding: 28px;
+      border-radius: 20px;
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      transition: .3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124,58,237,.45);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: rgba(124,58,237,.13);
+      border-radius: 14px;
+      font-size: 23px;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 9px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* HOW IT WORKS */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 20px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      background: linear-gradient(135deg,var(--primary),var(--secondary));
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    /* PRICING */
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .price-card {
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .price-card.featured {
+      border-color: rgba(124,58,237,.65);
+      box-shadow: 0 20px 60px rgba(124,58,237,.12);
+    }
+
+    .popular {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: var(--primary);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .price {
+      font-size: 38px;
+      font-weight: 900;
+      margin: 15px 0;
+    }
+
+    .price small {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: normal;
+    }
+
+    .price-list {
+      list-style: none;
+      margin: 22px 0;
+    }
+
+    .price-list li {
+      color: #cbd5e1;
+      margin: 11px 0;
+      font-size: 14px;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding: 80px 24px;
+    }
+
+    .cta-box {
+      max-width: 1100px;
+      margin: auto;
+      text-align: center;
+      padding: 70px 25px;
+      border-radius: 30px;
+      background: linear-gradient(135deg,rgba(124,58,237,.18),rgba(37,99,235,.13));
+      border: 1px solid var(--border);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(30px,5vw,48px);
+      margin-bottom: 15px;
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 55px 24px 25px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      max-width: 350px;
+      margin-top: 13px;
+      font-size: 14px;
+    }
+
+    footer h4 {
+      margin-bottom: 15px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      color: var(--muted);
+      margin: 9px 0;
+      font-size: 14px;
+    }
+
+    footer li:hover {
+      color: white;
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: 45px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: #64748b;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+      .nav-links,
+      .nav-buttons {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .dashboard-preview {
+        transform: none;
+      }
+
+      .features {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .steps {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .pricing {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: auto;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .nav-container {
+        padding: 0 17px;
+      }
+
+      .logo {
+        font-size: 17px;
+      }
+
+      .hero {
+        padding-top: 125px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 75px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+
+      <a href="#" class="logo">
+        <span class="logo-star">⭐</span>
+        <span>Starson ViewBoost</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#apropos">À propos</a>
+      </nav>
+
+      <div class="nav-buttons">
+        <button class="btn btn-outline" onclick="showMessage('La connexion sera disponible prochainement.')">
+          Connexion
+        </button>
+
+        <button class="btn btn-primary" onclick="showMessage('La création de compte sera disponible prochainement.')">
+          Créer un compte
+        </button>
+      </div>
+
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="accueil">
+
+    <section class="hero">
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="badge">
+            ⭐ La nouvelle génération d'analytics
+          </div>
+
+          <h1>
+            Boostez votre
+            <span class="gradient-text">visibilité</span>
+            avec Starson ViewBoost ⭐
+          </h1>
+
+          <p>
+            Une plateforme moderne pour suivre, analyser et développer
+            votre présence en ligne grâce à des statistiques claires
+            et des outils intelligents.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="showMessage('Bienvenue sur Starson ViewBoost ⭐')">
+              Commencer gratuitement →
+            </button>
+
+            <a href="#fonctionnalites" class="btn btn-outline">
+              Découvrir la plateforme
+            </a>
+          </div>
+
+        </div>
+
+        <!-- DASHBOARD MOCKUP -->
+        <div class="dashboard-preview">
+
+          <div class="preview-top">
+            <div class="preview-title">⭐ Dashboard</div>
+            <div class="live">● En direct</div>
+          </div>
+
+          <div class="stats-grid">
+
+            <div class="stat-card">
+              <span>Vues totales</span>
+              <strong>128.4K</strong>
+              <div class="growth">↗ +18.7%</div>
+            </div>
+
+            <div class="stat-card">
+              <span>Engagement</span>
+              <strong>76.8%</strong>
+              <div class="growth">↗ +12.4%</div>
+            </div>
+
+            <div class="stat-card">
+              <span>Utilisateurs</span>
+              <strong>8,492</strong>
+              <div class="growth">↗ +9.2%</div>
+            </div>
+
+            <div class="stat-card">
+              <span>Croissance</span>
+              <strong>+24.6%</strong>
+              <div class="growth">Cette semaine</div>
+            </div>
+
+          </div>
+
+          <div class="chart">
+            <div class="chart-line"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- FEATURES -->
+    <section id="fonctionnalites">
+
+      <div class="section-container">
+
+        <div class="section-heading">
+          <h2>Tout ce qu'il vous faut pour progresser</h2>
+          <p>
+            Starson ViewBoost rassemble les outils essentiels
+            pour comprendre et améliorer votre présence en ligne.
+          </p>
+        </div>
+
+        <div class="features">
+
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Statistiques intelligentes</h3>
+            <p>
+              Consultez vos données dans un tableau de bord simple,
+              clair et facile à comprendre.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Suivi de croissance</h3>
+            <p>
+              Analysez l'évolution de vos performances au fil du temps.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Gestion des utilisateurs</h3>
+            <p>
+              Gérez votre compte et vos informations depuis un espace centralisé.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Interface rapide</h3>
+            <p>
+              Une expérience fluide conçue pour fonctionner parfaitement
+              sur mobile et ordinateur.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <h3>Notifications</h3>
+            <p>
+              Recevez les informations importantes directement dans votre espace.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>Sécurité des comptes</h3>
+            <p>
+              Une architecture pensée pour protéger vos informations personnelles.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="apropos">
+
+      <div class="section-container">
+
+        <div class="section-heading">
+          <h2>Comment ça fonctionne ?</h2>
+          <p>
+            Commencez en quelques étapes simples.
+          </p>
+        </div>
+
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Créez votre compte</h3>
+            <p>Inscrivez-vous gratuitement.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Configurez votre espace</h3>
+            <p>Personnalisez votre profil.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Suivez vos statistiques</h3>
+            <p>Analysez vos performances.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Développez votre visibilité</h3>
+            <p>Prenez de meilleures décisions.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PRICING -->
+    <section id="tarifs">
+
+      <div class="section-container">
+
+        <div class="section-heading">
+          <h2>Des plans simples</h2>
+          <p>
+            Choisissez l'expérience qui correspond à vos besoins.
+          </p>
+        </div>
+
+        <div class="pricing">
+
+          <div class="price-card">
+
+            <h3>Gratuit</h3>
+
+            <div class="price">
+              0$ <small>/ mois</small>
+            </div>
+
+            <ul class="price-list">
+              <li>✓ Tableau de bord</li>
+              <li>✓ Statistiques de base</li>
+              <li>✓ Profil utilisateur</li>
+              <li>✓ Notifications</li>
+            </ul>
+
+            <button class="btn btn-outline" style="width:100%"
+              onclick="showMessage('Le plan Gratuit sera bientôt disponible.')">
+              Commencer
+            </button>
+
+          </div>
+
+          <div class="price-card featured">
+
+            <div class="popular">POPULAIRE</div>
+
+            <h3>Pro</h3>
+
+            <div class="price">
+              9.99$ <small>/ mois</small>
+            </div>
+
+            <ul class="price-list">
+              <li>✓ Toutes les fonctionnalités Gratuit</li>
+              <li>✓ Analytics avancés</li>
+              <li>✓ Rapports détaillés</li>
+              <li>✓ Suivi avancé</li>
+            </ul>
+
+            <button class="btn btn-primary" style="width:100%"
+              onclick="showMessage('Le plan Pro sera bientôt disponible.')">
+              Choisir Pro
+            </button>
+
+          </div>
+
+          <div class="price-card">
+
+            <h3>Premium</h3>
+
+            <div class="price">
+              19.99$ <small>/ mois</small>
+            </div>
+
+            <ul class="price-list">
+              <li>✓ Toutes les fonctionnalités Pro</li>
+              <li>✓ Analytics Premium</li>
+              <li>✓ Rapports avancés</li>
+              <li>✓ Support prioritaire</li>
+            </ul>
+
+            <button class="btn btn-outline" style="width:100%"
+              onclick="showMessage('Le plan Premium sera bientôt disponible.')">
+              Choisir Premium
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+
+      <div class="cta-box">
+
+        <h2>Prêt à booster votre visibilité ? ⭐</h2>
+
+        <p>
+          Rejoignez Starson ViewBoost et commencez à analyser
+          votre croissance dès aujourd'hui.
+        </p>
+
+        <button class="btn btn-primary"
+          onclick="showMessage('La création de compte sera disponible dans la prochaine étape.')">
+          Créer mon compte →
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <div class="logo">
+          <span class="logo-star">⭐</span>
+          <span>Starson ViewBoost</span>
+        </div>
+
+        <p>
+          Une plateforme moderne dédiée à l'analyse,
+          au suivi et au développement de votre visibilité en ligne.
+        </p>
+
+      </div>
+
+      <div>
+        <h4>Plateforme</h4>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Compte</h4>
+        <ul>
+          <li><a href="#" onclick="showMessage('Connexion bientôt disponible.')">Connexion</a></li>
+          <li><a href="#" onclick="showMessage('Inscription bientôt disponible.')">Créer un compte</a></li>
+          <li><a href="#">Paramètres</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 Starson ViewBoost ⭐ — Tous droits réservés.
+    </div>
+
+  </footer>
+
+  <script>
+    function showMessage(message) {
+      alert(message);
+    }
+
+    function toggleMenu() {
+      alert(
+        "Navigation mobile :\n\n" +
+        "Accueil\n" +
+        "Fonctionnalités\n" +
+        "Tarifs\n" +
+        "À propos\n" +
+        "Connexion\n" +
+        "Créer un compte"
+      );
+    }
+  </script>
+
+</body>
+  </html>
