@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion — Starson ViewBoost ⭐</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,58,237,.25), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(37,99,235,.2), transparent 35%),
+        #080d1c;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      font-size: 30px;
+    }
+
+    .card {
+      background: rgba(18,26,46,.9);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      padding: 35px 28px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.4);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 3px rgba(139,92,246,.12);
+    }
+
+    input::placeholder {
+      color: #64748b;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      color: #a78bfa;
+      font-size: 13px;
+      margin-top: -8px;
+      margin-bottom: 22px;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(124,58,237,.25);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 25px 0;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      background: rgba(255,255,255,.1);
+      flex: 1;
+    }
+
+    .signup {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .signup a {
+      color: #a78bfa;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 22px;
+      color: #94a3b8;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .message {
+      display: none;
+      margin-bottom: 18px;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.25);
+      color: #fca5a5;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">
+      <span>⭐</span> Starson ViewBoost
+    </div>
+
+    <div class="card">
+
+      <h1>Bienvenue</h1>
+
+      <p class="subtitle">
+        Connectez-vous à votre espace Starson ViewBoost.
+      </p>
+
+      <div class="message" id="message"></div>
+
+      <form id="loginForm">
+
+        <label for="email">Adresse e-mail</label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="vous@exemple.com"
+          required
+        >
+
+        <label for="password">Mot de passe</label>
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Votre mot de passe"
+          required
+        >
+
+        <a class="forgot" href="#" onclick="forgotPassword(event)">
+          Mot de passe oublié ?
+        </a>
+
+        <button type="submit">
+          Se connecter →
+        </button>
+
+      </form>
+
+      <div class="divider">OU</div>
+
+      <div class="signup">
+        Vous n'avez pas encore de compte ?
+        <a href="signup.html">Créer un compte</a>
+      </div>
+
+      <a class="back" href="index.html">
+        ← Retour à l'accueil
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        showMessage("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      /*
+       * Authentification réelle à connecter dans une prochaine étape.
+       * Pour l'instant, on prépare l'interface.
+       */
+      showMessage(
+        "Le système de connexion sera activé dans la prochaine étape."
+      );
+    });
+
+    function showMessage(text) {
+      message.textContent = text;
+      message.style.display = "block";
+    }
+
+    function forgotPassword(event) {
+      event.preventDefault();
+      showMessage(
+        "La récupération du mot de passe sera disponible prochainement."
+      );
+    }
+  </script>
+
+</body>
+</html>
