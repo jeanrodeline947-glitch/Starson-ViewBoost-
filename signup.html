@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Créer un compte — Starson ViewBoost ⭐</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,58,237,.25), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(37,99,235,.20), transparent 35%),
+        #080d1c;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      font-size: 30px;
+    }
+
+    .card {
+      background: rgba(18,26,46,.92);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      padding: 35px 28px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.4);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 29px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      margin-bottom: 17px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 3px rgba(139,92,246,.12);
+    }
+
+    input::placeholder {
+      color: #64748b;
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #94a3b8;
+      font-size: 12px;
+      margin: 4px 0 22px;
+      line-height: 1.5;
+    }
+
+    .terms input {
+      width: 16px;
+      height: 16px;
+      margin: 2px 0 0;
+      flex-shrink: 0;
+      accent-color: #7c3aed;
+    }
+
+    .terms a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(124,58,237,.25);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 25px 0;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      background: rgba(255,255,255,.1);
+      flex: 1;
+    }
+
+    .login {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .login a {
+      color: #a78bfa;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 22px;
+      color: #94a3b8;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .message {
+      display: none;
+      margin-bottom: 18px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .error {
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.25);
+      color: #fca5a5;
+    }
+
+    .success {
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.25);
+      color: #86efac;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">
+      <span>⭐</span> Starson ViewBoost
+    </div>
+
+    <div class="card">
+
+      <h1>Créer votre compte</h1>
+
+      <p class="subtitle">
+        Rejoignez Starson ViewBoost gratuitement.
+      </p>
+
+      <div class="message" id="message"></div>
+
+      <form id="signupForm">
+
+        <label for="name">Nom complet</label>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="Votre nom complet"
+          required
+        >
+
+        <label for="email">Adresse e-mail</label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="vous@exemple.com"
+          required
+        >
+
+        <label for="password">Mot de passe</label>
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Minimum 8 caractères"
+          minlength="8"
+          required
+        >
+
+        <label for="confirmPassword">
+          Confirmer le mot de passe
+        </label>
+
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirmez votre mot de passe"
+          minlength="8"
+          required
+        >
+
+        <label class="terms">
+          <input type="checkbox" id="terms" required>
+
+          <span>
+            J'accepte les
+            <a href="#">conditions d'utilisation</a>
+            et la
+            <a href="#">politique de confidentialité</a>.
+          </span>
+        </label>
+
+        <button type="submit">
+          Créer mon compte →
+        </button>
+
+      </form>
+
+      <div class="divider">OU</div>
+
+      <div class="login">
+        Vous avez déjà un compte ?
+        <a href="login.html">Se connecter</a>
+      </div>
+
+      <a class="back" href="index.html">
+        ← Retour à l'accueil
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById("signupForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        showMessage(
+          "Les mots de passe ne correspondent pas.",
+          "error"
+        );
+        return;
+      }
+
+      if (password.length < 8) {
+        showMessage(
+          "Le mot de passe doit contenir au moins 8 caractères.",
+          "error"
+        );
+        return;
+      }
+
+      /*
+       * La base de données et l'authentification réelle
+       * seront connectées dans une prochaine étape.
+       */
+
+      showMessage(
+        "Votre compte sera créé lorsque la base de données sera connectée.",
+        "success"
+      );
+    });
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+      message.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
